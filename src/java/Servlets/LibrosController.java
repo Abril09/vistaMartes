@@ -4,33 +4,36 @@
  * and open the template in the editor.
  */
 package Servlets;
-import Entidades.objeditorial;
+
 import Entidades.Categoria;
 import Entidades.autor;
 import Entidades.libro;
+import Entidades.objeditorial;
 import Model.CategoriaModel;
 import Model.autorModel;
 import Model.editorialModel;
 import Model.libroModel;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.*;
-import java.util.ArrayList;
-import static java.util.Collections.list;
-import java.util.List;
+
 /**
  *
  * @author programar
  */
-public class libroController extends HttpServlet {
+@WebServlet(name = "LibrosController", urlPatterns = {"/Libros"})
+public class LibrosController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,8 +48,7 @@ public class libroController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            String var=request.getParameter("action");
+              String var=request.getParameter("action");
             switch (var) {
                 case "cargar":
                     cargar(request,response);
@@ -81,8 +83,6 @@ public class libroController extends HttpServlet {
                 default:
                     throw new AssertionError();
             }
-            
-            
         }
     }
 
@@ -99,8 +99,6 @@ public class libroController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**
@@ -127,7 +125,7 @@ public class libroController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void cargar(HttpServletRequest request, HttpServletResponse response) {
+     private void cargar(HttpServletRequest request, HttpServletResponse response) {
          
         try {
             //To change body of generated methods, choose Tools | Templates.
@@ -144,11 +142,11 @@ public class libroController extends HttpServlet {
            
             
         } catch (IOException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -169,11 +167,11 @@ public class libroController extends HttpServlet {
            
             
         } catch (IOException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -408,9 +406,9 @@ public class libroController extends HttpServlet {
             
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -459,5 +457,5 @@ public class libroController extends HttpServlet {
         }
 
     }
-
+    
 }

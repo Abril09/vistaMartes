@@ -77,16 +77,7 @@
                    <img src="assets/img/user01.png" alt="user-picture" class="img-responsive img-circle center-box">
                 </figure>
                 <li style="color:#fff; cursor:default;">
-                    <span class="all-tittles"><%
-            HttpSession misesion = request.getSession(true);
-            String usuarioSesion = (String) misesion.getAttribute("username");
-        String perfiluser=(String)misesion.getAttribute("perfiluser"); 
-        if (usuarioSesion==null || perfiluser=="admin") {
-                     response.sendRedirect("Acceso_denegado.jsp");   
-            } else {
-                out.print("" + usuarioSesion + "<br/>");
-            }
-        %></span>
+                    <span class="all-tittles"></span>
                 </li>
                 <li  class="tooltips-general exit-system-button" data-href="CerrarSesion.jsp" data-placement="bottom" title="Salir del sistema">
                     <i class="zmdi zmdi-power"></i>

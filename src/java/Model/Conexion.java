@@ -22,7 +22,7 @@ public class Conexion {
     if(cnx==null){
     try{ 
         Class.forName("org.sqlite.JDBC");
-        cnx=(Connection) DriverManager.getConnection("jdbc:sqlite:C:\\Users\\programar\\Documents\\NetBeansProjects\\Trabajomartes\\Recursos\\Libros");
+        cnx=(Connection) DriverManager.getConnection("jdbc:sqlite:C:\\Users\\programar\\Documents\\NetBeansProjects\\WebApplication1\\Recursos\\Libros");
         
         }catch(SQLException ex){
         throw new SQLException(ex);

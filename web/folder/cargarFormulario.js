@@ -1,11 +1,11 @@
  function cargarForm(action) {
     var t = action.split('=');
     var index=t[1];
-     
+     alert("hola");
    
     $.ajax(
             {
-                url: "nuevo?action=" + action,
+                url: "Libros?action=" + action,
                 type: "Get",
                 datatype: "json",
                  
@@ -107,7 +107,7 @@ function llenarCategoria(action,op) {
 
     $.ajax(
             {
-                url: "nuevo?action="+action,
+                url: "Libros?action="+action,
                 datatype: "json",
                 type: "get",
                 async:true,

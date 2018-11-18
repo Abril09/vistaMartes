@@ -1,4 +1,7 @@
- <table class=" table table-striped table-bordered dt-responsive nowrap " id="table1">
+<div class="container" style="margin-top: 20px;" >
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-9 col-xs-offset-1">
+<table class="  display dt-responsive nowrap " id="table1">
             <thead class="thead-dark">
             <th scope="col">#</th>
             <th scope="col">ISBN</th>
@@ -12,26 +15,87 @@
                 
             </tbody>
 </table>
-
+            </div>
+        </div>
+</div> 
 <script>
-     $(document).ready(function(){
-            var tablas;    
-                
-           $.post("nuevo?action=cargar",function(data){
+   
+$(document).ready(function(){
+               
+           
+     traerlibros();
+   
+    
+    //isbn muestra detalle modal google
+    $('#table1 tbody').on('click', 'button.detalle', function () {
+               
+        var datos=traerFila("table1",this).isbn;
+       //carga modal desde api googlebooks//
+         cargarModalLibro(datos);
+ 
+    } );
+    //metodo para borrar ejemplar
+    
+   $('#table1 tbody').on('click', 'button.borrar', function () {
+       //crea objeto fila libro
+        var datos=traerFila("table1",this);       
+     
+        $.post("Libros?action=borrar",{id_ejemplar:datos.id_ejemplar },function(data,status){
+            if(data=1){
+                alert("Exitoso");
+                location.reload();
+              
+                 }else{
+                alert("No Exitoso");
+            }
+        });
+        
+        
+ 
+    } );
+    
+    
+      $('#table1 tbody').on('click', 'button.editar', function () {
+        
+       
+        var datos=traerFila("table1",this).id_ejemplar; 
+        
+           alert(datos);
+           location.href="actualizar.jsp?id="+datos;   } );
+                     
+                      
+                               
+                           
+                               
+                       
+                  
+                   
+               
+    
+    
+      });           
+        
+   
+               
+          //llenar tabla comienzo //
+           
+function traerlibros(){
+          
+           $.post("Libros?action=cargar",function(data){
                var ob=$.parseJSON(data);
-                tablas=$("#table1").DataTable({
+                $("#table1").DataTable({
                    'data':ob ,
                    
-                   "searching": false ,
+                   "searching": true ,
                    "columns":[{'data': "id_ejemplar"},
                        {'data':"isbn"},                       
                       { 'data':"titulo"},
                       { 'data':"Estado"},
                       { 'data':"ubicacion"},
                       { 'data':"Categoria"},
-                      {'defaultContent':"<button type='button' class=' detalle btn btn-dark' data-toggle='modal' data-target='#ModalCenter'  >Detalle</button>"+"  "+
-      "<button type='button' class=' borrar btn btn-dark'   >Borrar</button>"+
-  "<button type='button' class=' editar btn btn-dark'   >  editar  </button>"}
+                      {'defaultContent':"<button type='button' class=' detalle btn ' data-toggle='modal' data-target='#ModalCenter'  >Detalle</button>"+"  "+
+      "<button type='button' class=' borrar btn '   >Borrar</button>"+" "+
+  "<button type='button' class=' editar btn '   >  editar  </button>"}
                        
                    ],
                   "language": {
@@ -42,28 +106,18 @@
            
                });
                
-             
+                
               
        
         
     } );
     
-    //traer valor de tabla 
-    $('#table1 tbody').on('click', 'button.detalle', function () {
-        
        
-     var datos=tablas.row($(this).parents("tr")).data();
-        
-        
-    main(datos.isbn);
- 
-    } );
-    //metodo para traer id ejemplar
-    
-   $('#table1 tbody').on('click', 'button.borrar', function () {
-        
-       
-     var datos=tablas.row($(this).parents("tr")).data();
+    }
+
+//retorna un objeto libro desde la fila
+function traerFila(id,button){
+     var datos=$("#"+id).DataTable().row($(button).parents("tr")).data();
         
         
        
@@ -74,48 +128,12 @@
             estado:datos.Estado,
             ubicacion:datos.ubicacion,
             categoria:datos.Categoria
-        }
-        alert("hola")
-        $.post("nuevo?action=borrar",{id_ejemplar:libro.id_ejemplar },function(data,status){
-            if(data=1){
-                alert("Exitoso");
-                location.reload();
-                
-            }else{
-                alert("No Exitoso");
-            }
-        });
+        };
         
- 
-    } );
-      $('#table1 tbody').on('click', 'button.editar', function () {
-        
-       
-        var datos=tablas.row($(this).parents("tr")).data(); 
-        
-           alert(datos.isbn);
-           location.href="actualizar.jsp?id="+datos.id_ejemplar;
-           
-            
-            
-           
-           
-                                
-                               
-                                
-                           
-                   
-                   
-
-               
- 
-    } );
+        return libro;
     
-               
-        
-   
-               
-           }); 
+}
+
 
     
     

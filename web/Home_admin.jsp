@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="folder/datatables.min.css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write("'<script src="js/jquery-1.11.2.min.js"><\/script>'")</script>
     <script src="js/modernizr.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/main.js"></script>
+     <script type="text/javascript" src="folder/datatables.min.js"></script>
+    
     
     
 </head>
@@ -85,27 +88,7 @@
                    <img src="assets/img/user01.png" alt="user-picture" class="img-responsive img-circle center-box">
                 </figure>
                 <li style="color:#fff; cursor:default;">
-                    <span class="all-tittles"><%
-                      
-                        
-                        String exit="1";
-        if (exit.equals(request.getParameter("exito"))) {
-                String mensaje = "<script language='javascript'>alert('Registro exitoso');</script>";
-                out.println(mensaje);
-            }
-         String exit2="2";
-        if (exit2.equals(request.getParameter("exito"))) {
-                String mensaje = "<script language='javascript'>alert('Modificacion exitosa');</script>";
-                out.println(mensaje);
-            }
-        HttpSession misesion=request.getSession(true);
-        String usuarioSesion=(String)misesion.getAttribute("username");
-        String perfiluser=(String)misesion.getAttribute("perfiluser"); 
-        if (usuarioSesion==null || perfiluser=="trabajador") {
-                     response.sendRedirect("Acceso_denegado.jsp");  
-        }else{
-        out.print(""+usuarioSesion+"<br/>");}
-        %></span>
+                    <span class="all-tittles"></span>
                 </li>
                 <li  class="tooltips-general exit-system-button" data-href="CerrarSesion.jsp" data-placement="bottom" title="Salir del sistema">
                     <i class="zmdi zmdi-power"></i>
@@ -126,20 +109,23 @@
               <h1 class="all-tittles">Sistema bibliotecario <small>Administración Usuarios</small></h1>
             </div>
         </div>
+        
         <div class="container-fluid">
             <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
                 <li role="presentation"  class="active"><a href="Home_admin.jsp">Administradores</a></li>
             </ul>
         </div>
+    <div id="cargar" >
         <div class="container-fluid"  style="margin: 50px 0;">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <img src="assets/img/user01.png" alt="user" class="img-responsive center-box" style="max-width: 110px;">
                 </div>
+                
                 <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
                     Bienvenido a la sección de administradores del sistema, eres dueño de hacer lo que desees.
                 </div>
-            </div>
+                </div>
         </div>
         <div class="container-fluid">
             <div class="row">
@@ -148,7 +134,7 @@
                 </div>
             </div>
         </div>
-        
+    </div>
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -164,6 +150,25 @@
             </div>
           </div>
         </div>
+        
+        <div id="modal"></div>
+            
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <footer class="footer full-reset">
             <div class="container-fluid">
                 <div class="row">
@@ -184,5 +189,10 @@
             <div class="footer-copyright full-reset all-tittles">© 2018 Analistas</div>
         </footer>
     </div>
+    
+    <script>
+        $("#modal").load("libroModuloVista/modalDetalleLibro.jsp");
+        $("#cargar").load("libroModuloVista/Tabla.jsp");
+    </script>
 </body>
 </html>
