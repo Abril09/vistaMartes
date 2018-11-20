@@ -21,6 +21,9 @@
 </table>
             </div>
         </div>
+     <div id="modalDetalle"></div>
+     <div id="modalEditar"></div>   
+        
 </div> 
 <script>
 
@@ -28,6 +31,9 @@
 
 
             traerlibros();
+            $("#modalDetalle").load("libroModuloVista/modalDetalleLibro.jsp");
+        
+            $("#modalEditar").load("libroModuloVista/modalEditar.jsp");
 
 
             //muestra detalle modal google//
@@ -46,7 +52,7 @@
                 $.post("Libros?action=borrar",{id_ejemplar:datos.id_ejemplar },function(data,status){
                     if(data=1){
                         alert("Exitoso");
-                        location.reload();
+                            $("#cargar").load("libroModuloVista/Tabla.jsp");
 
                          }else{
                         alert("No Exitoso");
@@ -114,7 +120,7 @@
 
 
 
-         }
+         }//Fin de traer libros//
 
       //retorna un objeto libro desde la fila de la tabla//
         function traerFila(id,button){
@@ -133,7 +139,7 @@
 
                 return libro;
 
-        }
+        }//Fin de traer fila//
 
 
     

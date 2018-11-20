@@ -62,7 +62,7 @@
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i>&nbsp;&nbsp; Libros y catálogo <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
                             <li><a href="book.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo libro</a></li>
-                            <li><a href="catalog.html"><i class="zmdi zmdi-bookmark-outline zmdi-hc-fw"></i>&nbsp;&nbsp; Catálogo</a></li>
+                            <li ><a href="javascript:void(0)" id="btnCatalogo"><i class="zmdi zmdi-bookmark-outline zmdi-hc-fw"></i>&nbsp;&nbsp; Catálogo</a></li>
                         </ul>
                     </li>
                     <li>
@@ -150,24 +150,7 @@
             </div>
           </div>
         </div>
-        
-        <div id="modalDetalle"></div>
-         <div id="modalEditar"></div>   
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+               
         
         <footer class="footer full-reset">
             <div class="container-fluid">
@@ -191,9 +174,12 @@
     </div>
     
     <script>
-        $("#modalDetalle").load("libroModuloVista/modalDetalleLibro.jsp");
-        $("#cargar").load("libroModuloVista/Tabla.jsp");
-         $("#modalEditar").load("libroModuloVista/modalEditar.jsp");
+        $("#btnCatalogo").click(function(){
+            $("#cargar").load("libroModuloVista/Tabla.jsp");
+            
+        });
+        
+       
     </script>
 </body>
 </html>

@@ -47,7 +47,9 @@
                                 <label for="Estado" class="col-sm-3 col-form-label">  Estado </label>
                                 <div class="col-sm-9">
                                      <select class="custom-select custom-select-sm" id="Estado" required="true" name="estado">
-                                        <option selected></option>
+                                        <option value="1" selected>Disponible</option>
+                                        <option value="2" >Prestado</option>
+                                        <option value="3" >No disponible</option>
                                      </select>
                                 </div>
                         </div>  
@@ -83,13 +85,37 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button type="button" class="btn btn-primary" id="guardar">Guardar Cambios</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+   
+   
+   
+   $("#guardar").click(function(){
+       var ruta="Libros?action=actualizar";
+       var id=$("[name='idLibro']").val();
+       var Ubicacion=$("[name='ubicacion']").val();
+        var idestado=$("#Estado").val();
+        
+       $.post(ruta,{idEjemplar:id,ubicacion:Ubicacion,idEstado:idestado},function(data,status){
+           var op=data;
+           if(op==1){
+                alert("Editado");
+                $('#ModalEditar').modal('toggle');
+                 $("#cargar").load("libroModuloVista/Tabla.jsp");
+           }
+           else{
+               alert("Problemas al editar");
+           }
+          
+           
+       });
+       
+   });
    
     //llena modal editar con datos //
     function Formulario(id){

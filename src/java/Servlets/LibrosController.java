@@ -435,7 +435,9 @@ public class LibrosController extends HttpServlet {
       String ubicacion=request.getParameter("ubicacion");
       String Estado=request.getParameter("idEstado");
       PrintWriter out = response.getWriter();
+      
       String Id_ejemplar = request.getParameter("idEjemplar");
+     
       int id=Integer.parseInt(Id_ejemplar);
 
         try{
@@ -444,16 +446,16 @@ public class LibrosController extends HttpServlet {
                libroModel t=new libroModel();
             
                l.setUbicacion(ubicacion);
-               l.setEstado("1");
+               l.setEstado(Estado);
                l.setId_ejemplar(id);
             
                t.actualizarLibro(l);
               
-                response.sendRedirect("index.jsp");
+                 out.print("1");
         
         
         }catch(Exception e){
-        
+            out.print("0");
         }
 
     }
