@@ -151,8 +151,8 @@
           </div>
         </div>
         
-        <div id="modal"></div>
-            
+        <div id="modalDetalle"></div>
+         <div id="modalEditar"></div>   
         
        
         
@@ -191,8 +191,9 @@
     </div>
     
     <script>
-        $("#modal").load("libroModuloVista/modalDetalleLibro.jsp");
+        $("#modalDetalle").load("libroModuloVista/modalDetalleLibro.jsp");
         $("#cargar").load("libroModuloVista/Tabla.jsp");
+         $("#modalEditar").load("libroModuloVista/modalEditar.jsp");
     </script>
 </body>
 </html>

@@ -414,7 +414,7 @@ public class LibrosController extends HttpServlet {
         
     }
       private void getLibro(HttpServletRequest request, HttpServletResponse response) {
-       String pro =request.getParameter("id_ejemplar");
+       String pro =request.getParameter("idEjemplar");
         try{
             PrintWriter out = response.getWriter();
             libro l=new libro();
@@ -433,9 +433,9 @@ public class LibrosController extends HttpServlet {
       private void Actualizar(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
       String ubicacion=request.getParameter("ubicacion");
-      String Estado=request.getParameter("id_estado");
+      String Estado=request.getParameter("idEstado");
       PrintWriter out = response.getWriter();
-      String Id_ejemplar = request.getParameter("id_ejemplar");
+      String Id_ejemplar = request.getParameter("idEjemplar");
       int id=Integer.parseInt(Id_ejemplar);
 
         try{

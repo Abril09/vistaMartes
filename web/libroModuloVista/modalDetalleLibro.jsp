@@ -13,7 +13,7 @@
                                 <div class="card-deck col-md-12">
                                     <div class="card  border-light mb-3" style="width: 100%;">
                                         <center>
-                                            <img class="card-img-top" src="folder/img/loading.gif" alt="cargarLibro" style="width: 12rem;" id="as">
+                                            <img class="card-img-top" src="folder/img/loading.gif" alt="cargarLibro" style="width: 12rem;" id="imagenLibro">
                                         </center>
                                     </div>
                                     <div class="card-body">
@@ -40,47 +40,50 @@
         </div>
 <script> 
    
-   
+   //carga modal Detalle con datos desde googleBooks//
   function cargarModalLibro(isbn){
             
             var api="https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn;
+            
             $.get(api,function(data){
-             try {
-                        var libro = {
-                            Titulo: data["items"][0]["volumeInfo"]["title"],
-                            ISBN: data["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"],
-                            Autor: data["items"][0]["volumeInfo"]["authors"],
-                            Descripcion: data["items"][0]["volumeInfo"]["description"],
-                            Año: data["items"][0]["volumeInfo"]["publishedDate"],
-                    Imagen: data["items"][0]["volumeInfo"]["imageLinks"]["smallThumbnail"],
-                    Reseña: data["items"][0]["searchInfo"]["textSnippet"]
-                };
+                try {
+                           var libro = {
+                               Titulo: data["items"][0]["volumeInfo"]["title"],
+                               ISBN: data["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"],
+                               Autor: data["items"][0]["volumeInfo"]["authors"],
+                               Descripcion: data["items"][0]["volumeInfo"]["description"],
+                               Año: data["items"][0]["volumeInfo"]["publishedDate"],
+                               Imagen: data["items"][0]["volumeInfo"]["imageLinks"]["smallThumbnail"],
+                               Reseña: data["items"][0]["searchInfo"]["textSnippet"]
+                   };
 
-                $("#desc").text("Reseña" + "\n" + libro.Reseña)
-                $("#titulo").text("Titulo:  " + libro.Titulo + "     " + "ISBN: " + libro.ISBN)
-                $("#as").attr("src", libro.Imagen);
-                $("#dat3").text("Autor:  " + libro.Autor);
-                $("#isbn").text("ISBN:   " + libro.ISBN);
-                $("#dat2").text("Año:   " + libro.Año);
+                            $("#desc").text("Reseña" + "\n" + libro.Reseña)
+                            $("#titulo").text("Titulo:  " + libro.Titulo + "     " + "ISBN: " + libro.ISBN)
+                            $("#imagenLibro").attr("src", libro.Imagen);
+                            $("#dat3").text("Autor:  " + libro.Autor);
+                            $("#isbn").text("ISBN:   " + libro.ISBN);
+                            $("#dat2").text("Año:   " + libro.Año);
 
+                            
+                            if (libro.Descripcion != null) {
+                                $("#dat").text("Descripcion:  " + libro.Descripcion);
 
-                if (libro.Descripcion != null) {
-                    $("#dat").text("Descripcion:  " + libro.Descripcion);
+                            } else {
+                                $("#dat").hide();
+                            }
+                            
+               } catch (err) {
+                         $("#titulo").text("No disponible " +err);
+                         $("#as").attr("src", "folder/img/error.png");
 
-                } else {
-                    $("#dat").hide();
-                }
-            } catch (err) {
-                $("#titulo").text("No disponible ");
-                $("#as").attr("src", "folder/img/error.png");
+                         $("#desc").text("");
 
-                $("#desc").text("");
-
-                $("#dat").text("");
-                $("#dat3").text("");
-                $("#isbn").text("");
-                $("#dat2").text("");
-            }
-        });
+                         $("#dat").text("");
+                         $("#dat3").text("");
+                         $("#isbn").text("");
+                         $("#dat2").text("");
+                        
+               }
+           });
     }
 </script>
