@@ -1,16 +1,18 @@
-<div class="container" style="margin-top: 20px;" >
+<div class="container" style="margin-top: 20px;margin-left: 15px;margin-right: 15px" >
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-9 col-xs-offset-1">
+        <div class="col-xs-12 col-sm-4 col-md-10 ">
          
          
-<table class="  display dt-responsive nowrap " id="table1">
+<table class="display dt-responsive nowrap " id="table1">
             <thead class="thead-dark">
             <th scope="col">#</th>
             <th scope="col">ISBN</th>
             <th scope="col">titulo</th>
+            <th scope="col">Autor</th>
             <th scope="col">Estado</th>
             <th scope="col">Ubicacion</th>
             <th scope="col">Categoria</th>
+             <th scope="col">Editorial</th>
             <th scope="col" colspan="3">Accion</th>
             </thead>
             <tbody id="tbody">
@@ -83,14 +85,17 @@
                        var ob=$.parseJSON(data);
                         $("#table1").DataTable({
                            'data':ob ,
+                           'responsive': true,
 
                            "searching": true ,
                            "columns":[{'data': "id_ejemplar"},
                                {'data':"isbn"},                       
                               { 'data':"titulo"},
+                              { 'data':"Autor"},
                               { 'data':"Estado"},
                               { 'data':"ubicacion"},
                               { 'data':"Categoria"},
+                              { 'data':"Editorial"},
                               {'defaultContent':"<button type='button' class=' detalle btn ' data-toggle='modal' data-target='#ModalCenter'  >Detalle</button>"+"  "+
                                                 "<button type='button' class=' borrar btn '   >Borrar</button>"+" "+
                                                  "<button type='button' class='btn editar' data-toggle='modal' data-target='#ModalEditar'>Editar</button>"}
